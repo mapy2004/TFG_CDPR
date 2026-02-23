@@ -1,0 +1,9 @@
+[console_scripts]
+skycam_cable_1 = skycam_control.skycam_cable_1:main
+skycam_commander = skycam_control.skycam_commander:main
+skycam_controller = skycam_control.skycam_controller:main
+skycam_dynamics = skycam_control.skycam_dynamics:main
+skycam_force_test = skycam_control.skycam_force_test:main
+skycam_four_cables = skycam_control.skycam_four_cables:main
+skycam_goal_sender = skycam_control.skycam_goal_sender:main
+

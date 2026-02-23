@@ -1,0 +1,4 @@
+source;share/skycam_description/local_setup.bash
+source;share/skycam_description/local_setup.dsv
+source;share/skycam_description/local_setup.sh
+source;share/skycam_description/local_setup.zsh

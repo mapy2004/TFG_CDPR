@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="skycam">
+
+  <!-- PROPIEDADES -->
+  <xacro:property name="stadium_len" value="22.0"/>
+  <xacro:property name="stadium_width" value="15.0"/>
+  <xacro:property name="stadium_height" value="10.0"/>
+
+  <xacro:property name="p_size" value="0.9"/>
+  <xacro:property name="p_mass" value="570.0"/>
+
+  <!-- MATERIALES -->
+  <material name="gray"><color rgba="0.5 0.5 0.5 1"/></material>
+  <material name="blue"><color rgba="0 0 0.8 1"/></material>
+  <material name="red"><color rgba="0.8 0 0 1"/></material>
+
+  <!-- WORLD -->
+  <link name="world"/>
+
+  <!-- POSTES + ANCLAJES -->
+  <xacro:macro name="anchor_pole" params="name x y">
+    <link name="pole_${name}">
+      <visual>
+        <geometry><cylinder radius="0.1" length="${stadium_height}"/></geometry>
+        <material name="gray"/>
+      </visual>
+    </link>
+
+    <joint name="world_to_pole_${name}" type="fixed">
+      <parent link="world"/>
+      <child link="pole_${name}"/>
+      <origin xyz="${x} ${y} ${stadium_height/2}"/>
+    </joint>
+
+    <link name="anchor_${name}">
+      <visual>
+        <geometry><sphere radius="0.15"/></geometry>
+        <material name="red"/>
+      </visual>
+    </link>
+
+    <joint name="pole_to_anchor_${name}" type="fixed">
+      <parent link="pole_${name}"/>
+      <child link="anchor_${name}"/>
+      <origin xyz="0 0 ${stadium_height/2}"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:anchor_pole name="1" x="0" y="0"/>
+  <xacro:anchor_pole name="2" x="${stadium_len}" y="0"/>
+  <xacro:anchor_pole name="3" x="${stadium_len}" y="${stadium_width}"/>
+  <xacro:anchor_pole name="4" x="0" y="${stadium_width}"/>
+
+  <!-- PLATAFORMA -->
+  <link name="platform">
+    <visual>
+      <geometry><box size="${p_size} ${p_size} 0.1"/></geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <!-- JOINT SOLO PARA TF -->
+  <joint name="world_to_platform" type="floating">
+    <parent link="world"/>
+    <child link="platform"/>
+    <origin xyz="11 7.5 6"/>
+  </joint>
+
+  <!-- ANCLAJES PLATAFORMA -->
+  <xacro:macro name="platform_anchor" params="name x y z">
+    <link name="platform_anchor_${name}">
+      <visual>
+        <geometry><sphere radius="0.05"/></geometry>
+        <material name="red"/>
+      </visual>
+    </link>
+
+    <joint name="platform_to_anchor_${name}" type="fixed">
+      <parent link="platform"/>
+      <child link="platform_anchor_${name}"/>
+      <origin xyz="${x} ${y} ${z}"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:platform_anchor name="1" x=" 0.45" y=" 0.45" z="0.05"/>
+  <xacro:platform_anchor name="2" x="-0.45" y=" 0.45" z="0.05"/>
+  <xacro:platform_anchor name="3" x="-0.45" y="-0.45" z="0.05"/>
+  <xacro:platform_anchor name="4" x=" 0.45" y="-0.45" z="0.05"/>
+
+</robot>

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="skycam_v3">
+
+  <xacro:property name="p_size" value="0.9"/>
+  <xacro:property name="p_mass" value="25.0"/>
+  <xacro:property name="half" value="0.45"/> 
+
+  <link name="platform">
+    <inertial>
+      <origin xyz="0 0 -0.2"/> 
+      <mass value="${p_mass}"/>
+      <inertia ixx="3.0" ixy="0" ixz="0" iyy="3.0" iyz="0" izz="6.0"/>
+    </inertial>
+
+    <visual>
+      <geometry><box size="${p_size} ${p_size} 0.1"/></geometry>
+      <material name="orange"><color rgba="1 0.5 0 1"/></material>
+    </visual>
+    
+    <visual>
+      <origin xyz="0 0 -0.2"/>
+      <geometry><sphere radius="0.1"/></geometry>
+      <material name="dark_grey"><color rgba="0.2 0.2 0.2 1"/></material>
+    </visual>
+
+    <collision name="col_platform">
+      <geometry><box size="${p_size} ${p_size} 0.1"/></geometry>
+      <surface>
+         <friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction>
+      </surface>
+    </collision>
+  </link>
+
+  <gazebo reference="platform">
+    <material>Gazebo/Orange</material>
+    <gravity>true</gravity>
+    <linear_damping>0.5</linear_damping> 
+    <angular_damping>2.0</angular_damping> 
+  </gazebo>
+
+  <xacro:macro name="cable_attach" params="id x y">
+    <link name="attach_${id}">
+      <inertial><mass value="0.001"/><inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/></inertial>
+    </link>
+    <joint name="joint_${id}" type="fixed">
+      <parent link="platform"/>
+      <child link="attach_${id}"/>
+      <origin xyz="${x} ${y} 0.05"/> 
+    </joint>
+    <gazebo reference="joint_${id}"><preserveFixedJoint>true</preserveFixedJoint></gazebo>
+    <gazebo>
+      <plugin name="force_plugin_${id}" filename="libgazebo_ros_force.so">
+        <ros>
+          <namespace>skycam</namespace>
+          <remapping>gazebo_ros_force:=cmd_force_${id}</remapping>
+        </ros>
+        <link_name>attach_${id}</link_name>
+        <force_frame>world</force_frame> 
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:cable_attach id="1" x="${half}" y="${half}"/>
+  <xacro:cable_attach id="2" x="${half}" y="-${half}"/>
+  <xacro:cable_attach id="3" x="-${half}" y="${half}"/>
+  <xacro:cable_attach id="4" x="-${half}" y="-${half}"/>
+
+  <gazebo>
+    <plugin name="platform_odom" filename="libgazebo_ros_p3d.so">
+      <ros>
+        <namespace>skycam</namespace>
+        <remapping>odom:=platform_odom</remapping>
+      </ros>
+      <body_name>platform</body_name>
+      <frame_name>world</frame_name>
+      <update_rate>100.0</update_rate>
+    </plugin>
+  </gazebo>
+</robot>
