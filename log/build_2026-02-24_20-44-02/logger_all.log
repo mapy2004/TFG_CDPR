@@ -1,0 +1,220 @@
+[3.336s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[3.336s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x715b5775b3a0>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x715b5775aef0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x715b5775aef0>>, mixin_verb=('build',))
+[14.624s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[14.647s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[14.647s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[14.647s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[14.647s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[14.647s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[14.648s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/mapy/skycam_ws'
+[14.671s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[14.671s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[14.671s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[14.671s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[14.672s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[14.672s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[14.672s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[14.672s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[14.672s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[14.826s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[14.826s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[14.826s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[14.827s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[14.827s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[14.864s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[14.864s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[14.864s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[14.866s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[14.867s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[14.867s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[14.955s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[14.955s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[14.955s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[14.957s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extensions ['ignore', 'ignore_ament_install']
+[14.957s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extension 'ignore'
+[14.957s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extension 'ignore_ament_install'
+[14.958s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extensions ['colcon_pkg']
+[14.958s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extension 'colcon_pkg'
+[14.958s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extensions ['colcon_meta']
+[14.958s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extension 'colcon_meta'
+[14.958s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extensions ['ros']
+[14.958s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extension 'ros'
+[14.959s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extensions ['cmake', 'python']
+[14.959s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extension 'cmake'
+[14.959s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extension 'python'
+[14.959s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extensions ['python_setup_py']
+[14.959s] Level 1:colcon.colcon_core.package_identification:_identify(papers) by extension 'python_setup_py'
+[15.107s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extensions ['ignore', 'ignore_ament_install']
+[15.107s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extension 'ignore'
+[15.107s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extension 'ignore_ament_install'
+[15.108s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extensions ['colcon_pkg']
+[15.108s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extension 'colcon_pkg'
+[15.108s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extensions ['colcon_meta']
+[15.108s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extension 'colcon_meta'
+[15.108s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extensions ['ros']
+[15.108s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extension 'ros'
+[15.109s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extensions ['cmake', 'python']
+[15.109s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extension 'cmake'
+[15.109s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extension 'python'
+[15.109s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extensions ['python_setup_py']
+[15.109s] Level 1:colcon.colcon_core.package_identification:_identify(photos) by extension 'python_setup_py'
+[15.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[15.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[15.316s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[15.317s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[15.317s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[15.317s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[15.317s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[15.317s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[15.317s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[15.318s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[15.318s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[15.318s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[15.318s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[15.318s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[15.428s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_control) by extensions ['ignore', 'ignore_ament_install']
+[15.428s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_control) by extension 'ignore'
+[15.429s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_control) by extension 'ignore_ament_install'
+[15.429s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_control) by extensions ['colcon_pkg']
+[15.429s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_control) by extension 'colcon_pkg'
+[15.429s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_control) by extensions ['colcon_meta']
+[15.429s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_control) by extension 'colcon_meta'
+[15.429s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_control) by extensions ['ros']
+[15.430s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_control) by extension 'ros'
+[15.436s] DEBUG:colcon.colcon_core.package_identification:Package 'src/skycam_control' with type 'ros.ament_python' and name 'skycam_control'
+[15.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_description) by extensions ['ignore', 'ignore_ament_install']
+[15.469s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_description) by extension 'ignore'
+[15.470s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_description) by extension 'ignore_ament_install'
+[15.470s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_description) by extensions ['colcon_pkg']
+[15.470s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_description) by extension 'colcon_pkg'
+[15.470s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_description) by extensions ['colcon_meta']
+[15.470s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_description) by extension 'colcon_meta'
+[15.470s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_description) by extensions ['ros']
+[15.470s] Level 1:colcon.colcon_core.package_identification:_identify(src/skycam_description) by extension 'ros'
+[15.472s] DEBUG:colcon.colcon_core.package_identification:Package 'src/skycam_description' with type 'ros.ament_cmake' and name 'skycam_description'
+[15.472s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[15.472s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[15.472s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[15.472s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[15.473s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[15.852s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[15.852s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[15.869s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 2 installed packages in /home/mapy/skycam_ws/install
+[15.911s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 0 installed packages in /home/mapy/skycam_ws/src/skycam_control/skycam_control/install
+[16.068s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 486 installed packages in /opt/ros/humble
+[16.076s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[16.166s] Level 5:colcon.colcon_core.verb:set package 'skycam_control' build argument 'cmake_args' from command line to 'None'
+[16.166s] Level 5:colcon.colcon_core.verb:set package 'skycam_control' build argument 'cmake_target' from command line to 'None'
+[16.166s] Level 5:colcon.colcon_core.verb:set package 'skycam_control' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[16.166s] Level 5:colcon.colcon_core.verb:set package 'skycam_control' build argument 'cmake_clean_cache' from command line to 'False'
+[16.166s] Level 5:colcon.colcon_core.verb:set package 'skycam_control' build argument 'cmake_clean_first' from command line to 'False'
+[16.166s] Level 5:colcon.colcon_core.verb:set package 'skycam_control' build argument 'cmake_force_configure' from command line to 'False'
+[16.166s] Level 5:colcon.colcon_core.verb:set package 'skycam_control' build argument 'ament_cmake_args' from command line to 'None'
+[16.166s] Level 5:colcon.colcon_core.verb:set package 'skycam_control' build argument 'catkin_cmake_args' from command line to 'None'
+[16.166s] Level 5:colcon.colcon_core.verb:set package 'skycam_control' build argument 'catkin_skip_building_tests' from command line to 'False'
+[16.166s] DEBUG:colcon.colcon_core.verb:Building package 'skycam_control' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mapy/skycam_ws/build/skycam_control', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mapy/skycam_ws/install/skycam_control', 'merge_install': False, 'path': '/home/mapy/skycam_ws/src/skycam_control', 'symlink_install': False, 'test_result_base': None}
+[16.166s] Level 5:colcon.colcon_core.verb:set package 'skycam_description' build argument 'cmake_args' from command line to 'None'
+[16.167s] Level 5:colcon.colcon_core.verb:set package 'skycam_description' build argument 'cmake_target' from command line to 'None'
+[16.167s] Level 5:colcon.colcon_core.verb:set package 'skycam_description' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[16.167s] Level 5:colcon.colcon_core.verb:set package 'skycam_description' build argument 'cmake_clean_cache' from command line to 'False'
+[16.167s] Level 5:colcon.colcon_core.verb:set package 'skycam_description' build argument 'cmake_clean_first' from command line to 'False'
+[16.167s] Level 5:colcon.colcon_core.verb:set package 'skycam_description' build argument 'cmake_force_configure' from command line to 'False'
+[16.167s] Level 5:colcon.colcon_core.verb:set package 'skycam_description' build argument 'ament_cmake_args' from command line to 'None'
+[16.167s] Level 5:colcon.colcon_core.verb:set package 'skycam_description' build argument 'catkin_cmake_args' from command line to 'None'
+[16.167s] Level 5:colcon.colcon_core.verb:set package 'skycam_description' build argument 'catkin_skip_building_tests' from command line to 'False'
+[16.167s] DEBUG:colcon.colcon_core.verb:Building package 'skycam_description' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/mapy/skycam_ws/build/skycam_description', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/mapy/skycam_ws/install/skycam_description', 'merge_install': False, 'path': '/home/mapy/skycam_ws/src/skycam_description', 'symlink_install': False, 'test_result_base': None}
+[16.167s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[16.168s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[16.168s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/mapy/skycam_ws/src/skycam_control' with build type 'ament_python'
+[16.168s] Level 1:colcon.colcon_core.shell:create_environment_hook('skycam_control', 'ament_prefix_path')
+[16.172s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[16.172s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mapy/skycam_ws/install/skycam_control/share/skycam_control/hook/ament_prefix_path.ps1'
+[16.233s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mapy/skycam_ws/install/skycam_control/share/skycam_control/hook/ament_prefix_path.dsv'
+[16.314s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mapy/skycam_ws/install/skycam_control/share/skycam_control/hook/ament_prefix_path.sh'
+[16.317s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[16.317s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[16.360s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/mapy/skycam_ws/src/skycam_description' with build type 'ament_cmake'
+[16.360s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/mapy/skycam_ws/src/skycam_description'
+[16.361s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[16.361s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[17.336s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/mapy/skycam_ws/src/skycam_control'
+[17.336s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[17.336s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[17.352s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mapy/skycam_ws/build/skycam_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mapy/skycam_ws/install/skycam_control:/opt/ros/humble /usr/bin/cmake --build /home/mapy/skycam_ws/build/skycam_description -- -j4 -l4
+[17.395s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mapy/skycam_ws/build/skycam_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mapy/skycam_ws/install/skycam_control:/opt/ros/humble /usr/bin/cmake --build /home/mapy/skycam_ws/build/skycam_description -- -j4 -l4
+[17.536s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mapy/skycam_ws/build/skycam_description': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mapy/skycam_ws/install/skycam_control:/opt/ros/humble /usr/bin/cmake --install /home/mapy/skycam_ws/build/skycam_description
+[17.655s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(skycam_description)
+[17.656s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mapy/skycam_ws/build/skycam_description' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/mapy/skycam_ws/install/skycam_control:/opt/ros/humble /usr/bin/cmake --install /home/mapy/skycam_ws/build/skycam_description
+[17.661s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description' for CMake module files
+[17.759s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description' for CMake config files
+[17.880s] Level 1:colcon.colcon_core.shell:create_environment_hook('skycam_description', 'cmake_prefix_path')
+[17.881s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/hook/cmake_prefix_path.ps1'
+[17.882s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/hook/cmake_prefix_path.dsv'
+[17.882s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/hook/cmake_prefix_path.sh'
+[17.883s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description/lib'
+[17.887s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description/bin'
+[17.887s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description/lib/pkgconfig/skycam_description.pc'
+[17.887s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description/lib/python3.10/site-packages'
+[17.888s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description/bin'
+[17.888s] INFO:colcon.colcon_core.shell:Creating package script '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.ps1'
+[17.889s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.dsv'
+[17.890s] INFO:colcon.colcon_core.shell:Creating package script '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.sh'
+[17.891s] INFO:colcon.colcon_core.shell:Creating package script '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.bash'
+[17.891s] INFO:colcon.colcon_core.shell:Creating package script '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.zsh'
+[17.892s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mapy/skycam_ws/install/skycam_description/share/colcon-core/packages/skycam_description)
+[17.893s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(skycam_description)
+[17.893s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description' for CMake module files
+[17.894s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description' for CMake config files
+[17.894s] Level 1:colcon.colcon_core.shell:create_environment_hook('skycam_description', 'cmake_prefix_path')
+[17.894s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/hook/cmake_prefix_path.ps1'
+[17.895s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/hook/cmake_prefix_path.dsv'
+[17.895s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/hook/cmake_prefix_path.sh'
+[17.896s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description/lib'
+[17.896s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description/bin'
+[17.896s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description/lib/pkgconfig/skycam_description.pc'
+[17.896s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description/lib/python3.10/site-packages'
+[17.896s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_description/bin'
+[17.897s] INFO:colcon.colcon_core.shell:Creating package script '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.ps1'
+[17.897s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.dsv'
+[17.898s] INFO:colcon.colcon_core.shell:Creating package script '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.sh'
+[17.898s] INFO:colcon.colcon_core.shell:Creating package script '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.bash'
+[17.899s] INFO:colcon.colcon_core.shell:Creating package script '/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.zsh'
+[17.899s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mapy/skycam_ws/install/skycam_description/share/colcon-core/packages/skycam_description)
+[18.181s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/mapy/skycam_ws/src/skycam_control': PYTHONPATH=/home/mapy/skycam_ws/build/skycam_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/skycam_control build --build-base /home/mapy/skycam_ws/build/skycam_control/build install --record /home/mapy/skycam_ws/build/skycam_control/install.log --single-version-externally-managed install_data
+[18.818s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_control' for CMake module files
+[18.819s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/mapy/skycam_ws/src/skycam_control' returned '0': PYTHONPATH=/home/mapy/skycam_ws/build/skycam_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/skycam_control build --build-base /home/mapy/skycam_ws/build/skycam_control/build install --record /home/mapy/skycam_ws/build/skycam_control/install.log --single-version-externally-managed install_data
+[18.837s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_control' for CMake config files
+[18.869s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_control/lib'
+[18.869s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_control/bin'
+[18.869s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_control/lib/pkgconfig/skycam_control.pc'
+[18.869s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages'
+[18.869s] Level 1:colcon.colcon_core.shell:create_environment_hook('skycam_control', 'pythonpath')
+[18.869s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mapy/skycam_ws/install/skycam_control/share/skycam_control/hook/pythonpath.ps1'
+[18.870s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/mapy/skycam_ws/install/skycam_control/share/skycam_control/hook/pythonpath.dsv'
+[18.870s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/mapy/skycam_ws/install/skycam_control/share/skycam_control/hook/pythonpath.sh'
+[18.871s] Level 1:colcon.colcon_core.environment:checking '/home/mapy/skycam_ws/install/skycam_control/bin'
+[18.871s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(skycam_control)
+[18.872s] INFO:colcon.colcon_core.shell:Creating package script '/home/mapy/skycam_ws/install/skycam_control/share/skycam_control/package.ps1'
+[18.872s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/mapy/skycam_ws/install/skycam_control/share/skycam_control/package.dsv'
+[18.873s] INFO:colcon.colcon_core.shell:Creating package script '/home/mapy/skycam_ws/install/skycam_control/share/skycam_control/package.sh'
+[18.873s] INFO:colcon.colcon_core.shell:Creating package script '/home/mapy/skycam_ws/install/skycam_control/share/skycam_control/package.bash'
+[18.874s] INFO:colcon.colcon_core.shell:Creating package script '/home/mapy/skycam_ws/install/skycam_control/share/skycam_control/package.zsh'
+[18.874s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/mapy/skycam_ws/install/skycam_control/share/colcon-core/packages/skycam_control)
+[18.875s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[18.875s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[18.875s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[18.875s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[18.882s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[18.882s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[18.882s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[18.898s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[18.898s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/mapy/skycam_ws/install/local_setup.ps1'
+[18.900s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/mapy/skycam_ws/install/_local_setup_util_ps1.py'
+[18.903s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/mapy/skycam_ws/install/setup.ps1'
+[18.905s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/mapy/skycam_ws/install/local_setup.sh'
+[18.906s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/mapy/skycam_ws/install/_local_setup_util_sh.py'
+[18.907s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/mapy/skycam_ws/install/setup.sh'
+[18.909s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/mapy/skycam_ws/install/local_setup.bash'
+[18.910s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/mapy/skycam_ws/install/setup.bash'
+[18.911s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/mapy/skycam_ws/install/local_setup.zsh'
+[18.912s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/mapy/skycam_ws/install/setup.zsh'

@@ -7,9 +7,9 @@
 
   <link name="platform">
     <inertial>
-      <origin xyz="0 0 -0.2"/> 
+      <origin xyz="0 0 -0.15"/> 
       <mass value="${p_mass}"/>
-      <inertia ixx="3.0" ixy="0" ixz="0" iyy="3.0" iyz="0" izz="6.0"/>
+      <inertia ixx="4.0" ixy="0" ixz="0" iyy="4.0" iyz="0" izz="6.0"/>
     </inertial>
 
     <visual>
@@ -18,7 +18,13 @@
     </visual>
     
     <visual>
-      <origin xyz="0 0 -0.2"/>
+      <origin xyz="0 0 -0.075"/>
+      <geometry><cylinder radius="0.02" length="0.15"/></geometry>
+      <material name="dark_grey"><color rgba="0.2 0.2 0.2 1"/></material>
+    </visual>
+
+    <visual>
+      <origin xyz="0 0 -0.15"/>
       <geometry><sphere radius="0.1"/></geometry>
       <material name="dark_grey"><color rgba="0.2 0.2 0.2 1"/></material>
     </visual>
@@ -34,13 +40,13 @@
   <gazebo reference="platform">
     <material>Gazebo/Orange</material>
     <gravity>true</gravity>
-    <linear_damping>0.5</linear_damping> 
-    <angular_damping>2.0</angular_damping> 
+    <linear_damping>0.05</linear_damping> 
+    <angular_damping>0.1</angular_damping> 
   </gazebo>
 
   <xacro:macro name="cable_attach" params="id x y">
     <link name="attach_${id}">
-      <inertial><mass value="0.001"/><inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/></inertial>
+      <inertial><mass value="0.01"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
     </link>
     <joint name="joint_${id}" type="fixed">
       <parent link="platform"/>
@@ -64,7 +70,45 @@
   <xacro:cable_attach id="2" x="${half}" y="-${half}"/>
   <xacro:cable_attach id="3" x="-${half}" y="${half}"/>
   <xacro:cable_attach id="4" x="-${half}" y="-${half}"/>
+  
+  <link name="camera_link">
+    <inertial><mass value="0.1"/><inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/></inertial>
+    <visual>
+      <geometry><box size="0.1 0.1 0.1"/></geometry>
+      <material name="black"><color rgba="0 0 0 1"/></material>
+    </visual>
+  </link>
 
+  <joint name="camera_joint" type="fixed">
+    <parent link="platform"/>
+    <child link="camera_link"/>
+    <origin xyz="0 0 -0.2" rpy="0 1.5708 0"/> </joint>
+
+  <gazebo reference="camera_link">
+    <sensor type="camera" name="skycam_camera">
+      <update_rate>60.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <ros>
+          <namespace>skycam</namespace>
+          <remapping>image_raw:=camera/image_raw</remapping>
+        </ros>
+        <camera_name>main_camera</camera_name>
+        <frame_name>camera_link</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
   <gazebo>
     <plugin name="platform_odom" filename="libgazebo_ros_p3d.so">
       <ros>

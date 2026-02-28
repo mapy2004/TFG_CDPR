@@ -6,6 +6,7 @@
 /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/launch/display_rviz.launch.py
 /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/skycam_rviz.xacro
 /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/test.urdf
+/home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/ball.xacro
 /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/skycam.urdf
 /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/simple_sphere.xacro
 /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/skycam.xacro

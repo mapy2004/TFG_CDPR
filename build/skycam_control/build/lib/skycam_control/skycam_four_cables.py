@@ -6,7 +6,6 @@ import numpy as np
 from geometry_msgs.msg import Wrench, Point
 from nav_msgs.msg import Odometry
 from visualization_msgs.msg import Marker 
-from std_msgs.msg import ColorRGBA
 from scipy.spatial.transform import Rotation as R
 from scipy.optimize import nnls
 
@@ -15,13 +14,13 @@ class SkycamPaperControl(Node):
     def __init__(self):
         super().__init__('skycam_paper_control')
 
-        # === FÍSICA ===
         self.mass = 25.0
         self.g = 9.81
         
+        # --- TUS ANCLAS DEL ESTADIO GIGANTE ---
         self.anchors = np.array([
-            [ 10.0,  10.0, 15.0], [ 10.0, -10.0, 15.0],
-            [-10.0,  10.0, 15.0], [-10.0, -10.0, 15.0]
+            [ 30.0,  20.0, 30.0], [ 30.0, -20.0, 30.0],
+            [-30.0,  20.0, 30.0], [-30.0, -20.0, 30.0]
         ])
 
         val = 0.45
@@ -30,36 +29,32 @@ class SkycamPaperControl(Node):
             [-val,  val, 0.05], [-val, -val, 0.05]  
         ])
 
-        self.com_offset_body = np.array([0.0, 0.0, -0.2])
-
-        # === ESTADO ===
+        self.com_offset_body = np.array([0.0, 0.0, -0.15])
         self.target_pos = np.array([0.0, 0.0, 6.0]) 
-        self.smooth_ref = np.array([0.0, 0.0, 2.0]) 
+        self.smooth_ref = np.array([0.0, 0.0, 0.5]) 
+        
         self.current_pos = None
         self.current_rot = np.eye(3)
-        
         self.vel_lin_filtered = np.zeros(3)
         self.vel_ang_filtered = np.zeros(3)
-        self.alpha = 0.4 
-
-        # === PID ===
-        self.kp_pos = np.array([  20.0,   20.0,  150.0]) 
-        self.kd_pos = np.array([  15.0,   15.0,   60.0]) # Un poco más de freno lineal
         
+        # 1. FILTRO DE RUIDO DE GAZEBO (Más fuerte para evitar temblores)
+        self.alpha = 0.1 
+        
+        # 2. PID DE TRASLACIÓN (Valores de Steadicam Industrial)
+        self.kp_pos = np.array([  60.0,   60.0,   80.0]) 
+        self.kd_pos = np.array([ 120.0,  120.0,  100.0])
+
+        # 3. PID DE ROTACIÓN (Fuerte, pero sin pasarnos)
         self.kp_yaw = 15.0  
-        self.kd_yaw = 5.0
+        self.kd_yaw = 15.0
+        self.kp_tilt = 60.0   
+        self.kd_tilt = 30.0   
         
-        # Damping activo para Pitch y Roll (evita que pendulee)
-        self.kd_tilt = 30.0 
-        
-        # Pesos para el solver (Prioridad absoluta a no volcar)
-        self.weight_pos = 1.0
-        self.weight_rot = 15.0 
-
-        self.min_tension = 15.0 
+        self.min_tension = 10.0 
         self.max_tension = 4000.0
-        self.dt = 0.01 
         
+        self.create_subscription(Point, '/skycam/target_pos', self.target_cb, 10)
         self.create_subscription(Odometry, '/skycam/platform_odom', self.odom_cb, 10)
         self.pub_1 = self.create_publisher(Wrench, '/skycam/cmd_force_1', 10)
         self.pub_2 = self.create_publisher(Wrench, '/skycam/cmd_force_2', 10)
@@ -67,8 +62,7 @@ class SkycamPaperControl(Node):
         self.pub_4 = self.create_publisher(Wrench, '/skycam/cmd_force_4', 10)
         self.marker_pub = self.create_publisher(Marker, '/skycam/cable_visuals', 10)
         
-        self.timer = self.create_timer(self.dt, self.update)
-        self.get_logger().info('SKYCAM: Controlador 6-DOF Ponderado (Weighted NNLS) Activado.')
+        self.get_logger().info('SKYCAM: Control de Fuerzas Estabilizado.')
 
     def odom_cb(self, msg):
         p = msg.pose.pose.position
@@ -78,50 +72,60 @@ class SkycamPaperControl(Node):
         q = msg.pose.pose.orientation
         self.current_rot = R.from_quat([q.x, q.y, q.z, q.w]).as_matrix()
         
-        v_lin = np.array([msg.twist.twist.linear.x, msg.twist.twist.linear.y, msg.twist.twist.linear.z])
-        v_ang = np.array([msg.twist.twist.angular.x, msg.twist.twist.angular.y, msg.twist.twist.angular.z])
-        
-        self.vel_lin_filtered = (self.alpha * v_lin) + ((1 - self.alpha) * self.vel_lin_filtered)
-        self.vel_ang_filtered = (self.alpha * v_ang) + ((1 - self.alpha) * self.vel_ang_filtered)
-        
-        if np.linalg.norm(self.smooth_ref - np.array([0.0,0.0,2.0])) < 0.1:
-             self.smooth_ref = self.current_pos.copy()
+        v_lin_local = np.array([msg.twist.twist.linear.x, msg.twist.twist.linear.y, msg.twist.twist.linear.z])
+        v_ang_local = np.array([msg.twist.twist.angular.x, msg.twist.twist.angular.y, msg.twist.twist.angular.z])
+
+        v_lin_global = self.current_rot @ v_lin_local
+        v_ang_global = self.current_rot @ v_ang_local
+
+        self.vel_lin_filtered = (self.alpha * v_lin_global) + ((1 - self.alpha) * self.vel_lin_filtered)
+        self.vel_ang_filtered = (self.alpha * v_ang_global) + ((1 - self.alpha) * self.vel_ang_filtered)
+
+        self.update()
+
+    def target_cb(self, msg):
+        self.target_pos = np.array([msg.x, msg.y, msg.z])
 
     def update(self):
         if self.current_pos is None: return
 
-        alpha_ref = 0.02
-        self.smooth_ref = self.smooth_ref * (1 - alpha_ref) + self.target_pos * alpha_ref
+        dist_to_target = np.linalg.norm(self.target_pos - self.smooth_ref)
+        
+        if self.smooth_ref[2] < 5.8:
+            alpha_ref = 0.005
+            self.smooth_ref = self.smooth_ref * (1 - alpha_ref) + self.target_pos * alpha_ref
+        else:
+            # Seguimiento: Le ponemos un filtro rápido (0.2). 
+            # Esto elimina los "bandazos" de la IA sin causar un lag perceptible.
+            alpha_track = 1.0
+            self.smooth_ref = self.smooth_ref * (1 - alpha_track) + self.target_pos * alpha_track
 
-        # --- 1. DEMANDAS DE FUERZA (XYZ) ---
         err_pos = self.smooth_ref - self.current_pos
+
         f_pid = (self.kp_pos * err_pos) + (self.kd_pos * -self.vel_lin_filtered)
         
-        max_lat = 25.0
+        max_lat = 500.0 
         f_pid[0] = np.clip(f_pid[0], -max_lat, max_lat)
         f_pid[1] = np.clip(f_pid[1], -max_lat, max_lat)
         
         f_gravity = np.array([0.0, 0.0, self.mass * self.g])
         f_desired = f_pid + f_gravity
 
-        # --- 2. DEMANDAS DE MOMENTO (Roll, Pitch, Yaw) ---
-        # Damping activo: Si la plataforma se inclina, pedimos un torque contrario para frenarla
-        M_x = -self.kd_tilt * self.vel_ang_filtered[0]
-        M_y = -self.kd_tilt * self.vel_ang_filtered[1]
-
         r_err_vec = (R.identity() * R.from_matrix(self.current_rot).inv()).as_rotvec()
+        err_roll = r_err_vec[0]
+        err_pitch = r_err_vec[1]
         err_yaw = r_err_vec[2] 
+
+        M_x = (self.kp_tilt * err_roll) + (self.kd_tilt * -self.vel_ang_filtered[0])
+        M_y = (self.kp_tilt * err_pitch) + (self.kd_tilt * -self.vel_ang_filtered[1])
         M_z = (self.kp_yaw * err_yaw) + (self.kd_yaw * -self.vel_ang_filtered[2])
 
-        # Limitamos los torques máximos demandados
-        M_x = np.clip(M_x, -40.0, 40.0)
-        M_y = np.clip(M_y, -40.0, 40.0)
+        M_x = np.clip(M_x, -50.0, 50.0)
+        M_y = np.clip(M_y, -50.0, 50.0)
         M_z = np.clip(M_z, -20.0, 20.0)
 
-        # Wrench 6-DOF completo
         W_desired = np.array([f_desired[0], f_desired[1], f_desired[2], M_x, M_y, M_z])
 
-        # --- 3. JACOBIANA 6x4 COMPLETA ---
         J = np.zeros((6, 4)) 
         marker_points = []
         u_vectors = []
@@ -136,9 +140,7 @@ class SkycamPaperControl(Node):
             u = L / dist if dist > 0.01 else np.array([0,0,1])
             u_vectors.append(u)
             
-            # Balance de fuerzas
             J[0:3, i] = u 
-            # Balance de momentos (r x F)
             tau_i = np.cross(r_world, u)
             J[3:6, i] = tau_i 
             
@@ -147,18 +149,15 @@ class SkycamPaperControl(Node):
         
         self.publish_cables(marker_points)
 
-        # --- 4. APLICACIÓN DE PESOS (WEIGHTED LEAST SQUARES) ---
-        # Multiplicamos la jacobiana y el Wrench por la matriz de pesos
-        # Esto obliga al solver a priorizar la estabilización angular
-        Weights = np.diag([self.weight_pos, self.weight_pos, self.weight_pos, 
-                           self.weight_rot, self.weight_rot, self.weight_rot])
+        # 3. MAYOR PRIORIDAD DE ROTACIÓN EN EL SOLVER
+        # Pesos: [Fx, Fy, Fz, Mx, My, Mz]. 
+        # Subimos Mx y My de 0.01 a 0.5 para que el solver respete la horizontalidad.
+        Weights = np.diag([1.0, 1.0, 3.0, 2.0, 2.0, 0.5])
         
         J_weighted = Weights @ J
         W_weighted = Weights @ W_desired
 
-        # --- 5. SOLVER NNLS CON PRETENSIÓN ---
         T_min_vec = np.full(4, self.min_tension)
-        # Restamos del Wrench deseado la fuerza que ya generan esos 15 N base
         W_adjusted = W_weighted - (J_weighted @ T_min_vec)
         
         try:
@@ -170,7 +169,6 @@ class SkycamPaperControl(Node):
 
         tensions = np.clip(tensions, self.min_tension, self.max_tension)
 
-        # --- 6. PUBLICAR ---
         self.publish_force(self.pub_1, tensions[0], u_vectors[0])
         self.publish_force(self.pub_2, tensions[1], u_vectors[1])
         self.publish_force(self.pub_3, tensions[2], u_vectors[2])

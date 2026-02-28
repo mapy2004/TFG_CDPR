@@ -1,0 +1,38 @@
+[0.617s] Invoking command in '/home/mapy/skycam_ws/build/skycam_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mapy/skycam_ws/build/skycam_description -- -j4 -l4
+[5.419s] Invoked command in '/home/mapy/skycam_ws/build/skycam_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/mapy/skycam_ws/build/skycam_description -- -j4 -l4
+[5.436s] Invoking command in '/home/mapy/skycam_ws/build/skycam_description': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mapy/skycam_ws/build/skycam_description
+[5.447s] -- Install configuration: ""
+[5.484s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/lib/skycam_description/simple_tf_broadcaster.py
+[5.604s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/config
+[5.604s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/config/config.rviz
+[5.604s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/launch
+[5.604s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/launch/debug_sphere.launch.py
+[5.605s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/launch/display.launch.py
+[5.605s] -- Installing: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/launch/display_gazebo.launch.py
+[5.625s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/launch/display_rviz.launch.py
+[5.625s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf
+[5.626s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/skycam_rviz.xacro
+[5.626s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/test.urdf
+[5.626s] -- Installing: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/ball.xacro
+[5.745s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/skycam.urdf
+[5.745s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/simple_sphere.xacro
+[5.746s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/skycam.xacro
+[5.746s] -- Installing: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/skycam_gazebo.xacro
+[5.866s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/worlds
+[5.866s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/worlds/normal.world
+[5.867s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/ament_index/resource_index/package_run_dependencies/skycam_description
+[5.868s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/ament_index/resource_index/parent_prefix_path/skycam_description
+[5.868s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/environment/ament_prefix_path.sh
+[5.868s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/environment/ament_prefix_path.dsv
+[5.868s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/environment/path.sh
+[5.869s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/environment/path.dsv
+[5.869s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/local_setup.bash
+[5.869s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/local_setup.sh
+[5.869s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/local_setup.zsh
+[5.870s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/local_setup.dsv
+[5.870s] -- Installing: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.dsv
+[5.875s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/ament_index/resource_index/packages/skycam_description
+[5.875s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/cmake/skycam_descriptionConfig.cmake
+[5.876s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/cmake/skycam_descriptionConfig-version.cmake
+[5.876s] -- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.xml
+[5.882s] Invoked command in '/home/mapy/skycam_ws/build/skycam_description' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/mapy/skycam_ws/build/skycam_description

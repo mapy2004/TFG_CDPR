@@ -30,6 +30,10 @@ setup(
           'skycam_force_test = skycam_control.skycam_force_test:main',
           'skycam_cable_1 = skycam_control.skycam_cable_1:main',
           'skycam_four_cables = skycam_control.skycam_four_cables:main',
-          'skycam_commander = skycam_control.skycam_commander:main',        ],
+          'skycam_commander = skycam_control.skycam_commander:main',
+          'skycam_trajectory_planner=skycam_control.skycam_trajectory_planner:main',
+          'skycam_ai_tracker=skycam_control.skycam_ai_tracker:main',
+          'ball_mover=skycam_control.ball_mover:main',
+                 ],
     },
 )
