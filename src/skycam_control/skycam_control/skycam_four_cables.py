@@ -17,7 +17,6 @@ class SkycamPaperControl(Node):
         self.mass = 25.0
         self.g = 9.81
         
-        # --- TUS ANCLAS DEL ESTADIO GIGANTE ---
         self.anchors = np.array([
             [ 30.0,  20.0, 30.0], [ 30.0, -20.0, 30.0],
             [-30.0,  20.0, 30.0], [-30.0, -20.0, 30.0]
@@ -30,44 +29,40 @@ class SkycamPaperControl(Node):
         ])
 
         self.com_offset_body = np.array([0.0, 0.0, -0.15])
-        self.target_pos = np.array([0.0, 0.0, 6.0]) 
-        self.smooth_ref = np.array([0.0, 0.0, 0.5]) 
+        
+        # --- AJUSTE VITAL: Altura inicial coherente con el planificador ---
+        self.target_pos = np.array([0.0, 0.0, 15.0]) 
         
         self.current_pos = None
         self.current_rot = np.eye(3)
         self.vel_lin_filtered = np.zeros(3)
         self.vel_ang_filtered = np.zeros(3)
         
-        # 1. FILTRO DE RUIDO DE GAZEBO (Más fuerte para evitar temblores)
-        self.alpha = 0.8 
+        self.alpha_lin = 0.6  
+        self.alpha_ang = 0.85 
         
-        # 2. PID DE TRASLACIÓN (Valores de Steadicam Industrial)
-        self.kp_pos = np.array([  60.0,   60.0,   80.0]) 
-        self.kd_pos = np.array([ 120.0,  120.0,  100.0])
-
-        # 3. PID DE ROTACIÓN (Fuerte, pero sin pasarnos)
-        self.kp_yaw = 15.0  
-        self.kd_yaw = 15.0
-        self.kp_tilt = 60.0   
-        self.kd_tilt = 30.0   
+        self.kp_pos = np.array([ 185.0,  185.0,  200.0]) 
+        self.kd_pos = np.array([ 145.0,  145.0,  125.0])
+        self.kp_yaw = 200.0    
+        self.kd_yaw = 100.0
+        self.kp_tilt = 80.0   
+        self.kd_tilt = 60.0
         
         self.min_tension = 10.0 
         self.max_tension = 4000.0
         
         self.create_subscription(Point, '/skycam/target_pos', self.target_cb, 10)
         self.create_subscription(Odometry, '/skycam/platform_odom', self.odom_cb, 10)
+        
         self.pub_1 = self.create_publisher(Wrench, '/skycam/cmd_force_1', 10)
         self.pub_2 = self.create_publisher(Wrench, '/skycam/cmd_force_2', 10)
         self.pub_3 = self.create_publisher(Wrench, '/skycam/cmd_force_3', 10)
         self.pub_4 = self.create_publisher(Wrench, '/skycam/cmd_force_4', 10)
         self.marker_pub = self.create_publisher(Marker, '/skycam/cable_visuals', 10)
-        
-        self.get_logger().info('SKYCAM: Control de Fuerzas Estabilizado.')
 
     def odom_cb(self, msg):
         p = msg.pose.pose.position
         if np.isnan(p.x): return
-        
         self.current_pos = np.array([p.x, p.y, p.z])
         q = msg.pose.pose.orientation
         self.current_rot = R.from_quat([q.x, q.y, q.z, q.w]).as_matrix()
@@ -78,9 +73,8 @@ class SkycamPaperControl(Node):
         v_lin_global = self.current_rot @ v_lin_local
         v_ang_global = self.current_rot @ v_ang_local
 
-        self.vel_lin_filtered = (self.alpha * v_lin_global) + ((1 - self.alpha) * self.vel_lin_filtered)
-        self.vel_ang_filtered = (self.alpha * v_ang_global) + ((1 - self.alpha) * self.vel_ang_filtered)
-
+        self.vel_lin_filtered = (self.alpha_lin * v_lin_global) + ((1 - self.alpha_lin) * self.vel_lin_filtered)
+        self.vel_ang_filtered = (self.alpha_ang * v_ang_global) + ((1 - self.alpha_ang) * self.vel_ang_filtered)
         self.update()
 
     def target_cb(self, msg):
@@ -89,24 +83,13 @@ class SkycamPaperControl(Node):
     def update(self):
         if self.current_pos is None: return
 
-        dist_to_target = np.linalg.norm(self.target_pos - self.smooth_ref)
+        err_pos = self.target_pos - self.current_pos
+        f_pid = (self.kp_pos * err_pos) + (self.kd_pos * -self.vel_lin_filtered) 
         
-        if self.smooth_ref[2] < 5.8:
-            alpha_ref = 0.005
-            self.smooth_ref = self.smooth_ref * (1 - alpha_ref) + self.target_pos * alpha_ref
-        else:
-            # Seguimiento: Le ponemos un filtro rápido (0.2). 
-            # Esto elimina los "bandazos" de la IA sin causar un lag perceptible.
-            alpha_track = 0.05
-            self.smooth_ref = self.smooth_ref * (1 - alpha_track) + self.target_pos * alpha_track
-
-        err_pos = self.smooth_ref - self.current_pos
-
-        f_pid = (self.kp_pos * err_pos) + (self.kd_pos * -self.vel_lin_filtered)
-        
-        max_lat = 500.0 
+        max_lat = 250.0 
         f_pid[0] = np.clip(f_pid[0], -max_lat, max_lat)
         f_pid[1] = np.clip(f_pid[1], -max_lat, max_lat)
+        f_pid[2] = np.clip(f_pid[2], -250.0, 250.0)
         
         f_gravity = np.array([0.0, 0.0, self.mass * self.g])
         f_desired = f_pid + f_gravity
@@ -120,9 +103,9 @@ class SkycamPaperControl(Node):
         M_y = (self.kp_tilt * err_pitch) + (self.kd_tilt * -self.vel_ang_filtered[1])
         M_z = (self.kp_yaw * err_yaw) + (self.kd_yaw * -self.vel_ang_filtered[2])
 
-        M_x = np.clip(M_x, -50.0, 50.0)
-        M_y = np.clip(M_y, -50.0, 50.0)
-        M_z = np.clip(M_z, -20.0, 20.0)
+        M_x = np.clip(M_x, -80.0, 80.0)
+        M_y = np.clip(M_y, -80.0, 80.0)
+        M_z = np.clip(M_z, -150.0, 150.0)
 
         W_desired = np.array([f_desired[0], f_desired[1], f_desired[2], M_x, M_y, M_z])
 
@@ -149,10 +132,7 @@ class SkycamPaperControl(Node):
         
         self.publish_cables(marker_points)
 
-        # 3. MAYOR PRIORIDAD DE ROTACIÓN EN EL SOLVER
-        # Pesos: [Fx, Fy, Fz, Mx, My, Mz]. 
-        # Subimos Mx y My de 0.01 a 0.5 para que el solver respete la horizontalidad.
-        Weights = np.diag([1.0, 1.0, 3.0, 2.0, 2.0, 0.5])
+        Weights = np.diag([1.0, 1.0, 1.5, 5.0, 5.0, 10.0])
         
         J_weighted = Weights @ J
         W_weighted = Weights @ W_desired
@@ -164,7 +144,6 @@ class SkycamPaperControl(Node):
             delta_tensions, _ = nnls(J_weighted, W_adjusted)
             tensions = delta_tensions + T_min_vec
         except Exception as e:
-            self.get_logger().error(f"Error en NNLS: {e}")
             tensions = T_min_vec
 
         tensions = np.clip(tensions, self.min_tension, self.max_tension)

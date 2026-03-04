@@ -46,7 +46,7 @@ def generate_launch_description():
     spawn_skycam = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
-        arguments=['-entity', 'skycam_v3', '-file', tmp_urdf_skycam.name, '-x', '0', '-y', '0', '-z', '0.5'],
+        arguments=['-entity', 'skycam_v3', '-file', tmp_urdf_skycam.name, '-x', '0', '-y', '0', '-z', '8'],
         output='screen'
     )
 
@@ -54,7 +54,7 @@ def generate_launch_description():
     spawn_ball = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
-        arguments=['-entity', 'soccer_ball', '-file', tmp_urdf_ball.name, '-x', '2.0', '-y', '2.0', '-z', '0.2'],
+        arguments=['-entity', 'soccer_ball', '-file', tmp_urdf_ball.name, '-x', '0.0', '-y', '0.0', '-z', '0.2'],
         output='screen'
     )
 

@@ -6,13 +6,12 @@ import numpy as np
 from geometry_msgs.msg import Point, Twist
 from nav_msgs.msg import Odometry
 from enum import Enum
+from scipy.spatial.transform import Rotation as R
 
 class State(Enum):
     IDLE = 0
     APPROACHING_START = 1
-    TRACKING = 2
-    DONE = 3
-    TELEOP = 4  # NUEVO ESTADO: Teleoperación manual
+    TELEOP = 2  
 
 class TrajectoryPlanner(Node):
     def __init__(self):
@@ -20,74 +19,51 @@ class TrajectoryPlanner(Node):
         
         self.target_pub = self.create_publisher(Point, '/skycam/target_pos', 10)
         self.odom_sub = self.create_subscription(Odometry, '/skycam/platform_odom', self.odom_cb, 10)
-        
-        # NUEVO: Suscriptor para el joystick/teclado
         self.cmd_sub = self.create_subscription(Twist, '/skycam/cmd_vel', self.cmd_cb, 10)
         
         self.current_pos = None
+        self.current_yaw = 0.0 
+        
+        self.virtual_target = np.array([0.0, 0.0, 0.0])
         self.state = State.IDLE
+        
         self.approach_tolerance = 0.15 
         
-        # --- PARÁMETROS DE TRAYECTORIA QUÍNTICA (Modo Automático) ---
-        self.T_total = 25.0  
-        self.t_current = 0.0
         self.dt = 0.02       
-        self.R_x = 6.0
-        self.R_y = 4.0
-        self.Z_height = 6.0
-        self.time_lookahead = 0.3 
+        self.Z_height = 15.0   # ALTURA DE ESTADIO (15 metros)
         
-        # --- PARÁMETROS TELEOP Y FÓRMULAS ---
-        self.teleop_target = np.array([0.0, 0.0, 6.0]) # Punto virtual inicial
-        self.manual_vel = np.zeros(3)
-        self.last_manual_vel = np.zeros(3)
-        self.v_max = 5.0       # Velocidad máxima permitida por el operador
-        self.v_min = 0.5
-        self.beta = 2.0        # Factor de freno en giros bruscos
-        self.lookahead_distance = 0.5 # Distancia de proyección
+        self.cmd_vel = np.zeros(3)
+        self.virtual_vel = np.zeros(3)
         
-        # --- SEGURIDAD WFW (CLAMPING) ---
+        self.max_speed = 15.0       
+        
+        self.prev_cmd_angle = 0.0
+        self.smooth_omega = 0.0 
+        
         self.safe_x_limit = 8.0  
         self.safe_y_limit = 8.0  
-        self.safe_z_min = 2.0    
-        self.safe_z_max = 13.0   
+        self.safe_z_max = 20.0   # Techo subido a 20 metros
 
         self.timer = self.create_timer(self.dt, self.control_loop)
-        self.get_logger().info('Planificador Iniciado. Modos disponibles: AUTOMÁTICO (Lemniscata) y TELEOP (cmd_vel).')
-
-    def get_quintic_scaling(self, t, T):
-        if t <= 0: return 0.0
-        if t >= T: return 1.0
-        tau = t / T
-        return 10*(tau**3) - 15*(tau**4) + 6*(tau**5)
+        self.get_logger().info('Planificador: Modo Estadio (15m) ACTIVADO.')
 
     def evaluate_path(self, s):
-        theta = s * 2.0 * np.pi
-        x = self.R_x * np.sin(theta)
-        y = self.R_y * np.sin(2 * theta)
-        z = self.Z_height
-        return np.array([x, y, z])
+        return np.array([0.0, 0.0, self.Z_height])
 
     def odom_cb(self, msg):
         p = msg.pose.pose.position
         if not np.isnan(p.x):
             self.current_pos = np.array([p.x, p.y, p.z])
-            # Inicio automático solo si no estamos ya en otro estado
+            q = msg.pose.pose.orientation
+            r = R.from_quat([q.x, q.y, q.z, q.w])
+            self.current_yaw = r.as_euler('xyz', degrees=False)[2]
+            
             if self.state == State.IDLE:
+                self.virtual_target = self.current_pos.copy()
                 self.state = State.APPROACHING_START
-                self.get_logger().info('MFS: Iniciando secuencia automática (APPROACHING_START)')
 
     def cmd_cb(self, msg):
-        """ Recibe comandos de velocidad del operador """
-        self.manual_vel = np.array([msg.linear.x, msg.linear.y, msg.linear.z])
-        
-        # Si se recibe cualquier comando, forzamos la MFS al modo TELEOP
-        if np.linalg.norm(self.manual_vel) > 0.01 and self.state != State.TELEOP:
-            self.state = State.TELEOP
-            # Sincronizamos el punto virtual con la posición real para no dar tirones
-            if self.current_pos is not None:
-                self.teleop_target = self.current_pos.copy()
-            self.get_logger().info('MFS: Override manual detectado. Transición a TELEOP.')
+        self.cmd_vel = np.array([msg.linear.x, msg.linear.y, msg.linear.z])
 
     def control_loop(self):
         if self.current_pos is None: return
@@ -97,70 +73,87 @@ class TrajectoryPlanner(Node):
 
         if self.state == State.APPROACHING_START:
             start_point = self.evaluate_path(0.0)
-            target.x, target.y, target.z = start_point[0], start_point[1], start_point[2]
+            dir_vec = start_point - self.virtual_target
+            dist = np.linalg.norm(dir_vec)
+            step = 1.5 * self.dt 
+            
+            if dist > step:
+                self.virtual_target += (dir_vec / dist) * step
+            else:
+                self.virtual_target = start_point
+                
+            target.x, target.y, target.z = self.virtual_target[0], self.virtual_target[1], self.virtual_target[2]
             active_command = True
             
-            error = np.linalg.norm(start_point - self.current_pos)
-            if error < self.approach_tolerance:
-                self.state = State.TRACKING
-                self.t_current = 0.0
-                self.get_logger().info('MFS: Posición alcanzada. Iniciando TRACKING Quíntico.')
-
-        elif self.state == State.TRACKING:
-            self.t_current += self.dt
-            t_target = min(self.t_current + self.time_lookahead, self.T_total)
-            s = self.get_quintic_scaling(t_target, self.T_total)
-            p_target = self.evaluate_path(s)
-            
-            target.x, target.y, target.z = p_target[0], p_target[1], p_target[2]
-            active_command = True
-            
-            if self.t_current >= self.T_total:
-                self.state = State.DONE
-                self.get_logger().info('MFS: Trayectoria finalizada. Transición a DONE')
-
-        elif self.state == State.DONE:
-            end_point = self.evaluate_path(1.0)
-            target.x, target.y, target.z = end_point[0], end_point[1], end_point[2]
-            active_command = True
+            error_fisico = np.linalg.norm(start_point - self.current_pos)
+            if dist <= step and error_fisico < self.approach_tolerance:
+                self.state = State.TELEOP
+                self.get_logger().info('MFS: ¡IA AL MANDO!')
 
         elif self.state == State.TELEOP:
-            # --- 1. CÁLCULO DE CURVATURA INSTANTÁNEA ---
-            # Evaluamos la intención de giro comparando la velocidad actual con la anterior
-            accel_intent = (self.manual_vel - self.last_manual_vel) / self.dt
-            vel_norm = np.linalg.norm(self.manual_vel)
-            
-            kappa = 0.0
-            if vel_norm > 0.1:
-                cross_prod = np.cross(self.manual_vel, accel_intent)
-                kappa = np.linalg.norm(cross_prod) / (vel_norm ** 3)
-            
-            self.last_manual_vel = self.manual_vel.copy()
+            yaw = self.current_yaw
+            v_x_global = self.cmd_vel[0] * np.cos(yaw) - self.cmd_vel[1] * np.sin(yaw)
+            v_y_global = self.cmd_vel[0] * np.sin(yaw) + self.cmd_vel[1] * np.cos(yaw)
+            cmd_vel_global = np.array([v_x_global, v_y_global, 0.0])
 
-            # --- 2. CONTROL DINÁMICO DE VELOCIDAD ---
-            # Frenamos el comando del usuario si intenta hacer un giro muy cerrado a alta velocidad
-            speed_factor = 1.0 / (1.0 + self.beta * kappa)
-            safe_vel = self.manual_vel * speed_factor
+            vel_norm = np.linalg.norm(self.virtual_vel)
+            cmd_norm = np.linalg.norm(cmd_vel_global)
             
-            # --- 3. FÓRMULA DEL LOOKAHEAD (Integración Cinemática) ---
-            # En lugar de enviar la velocidad pura, avanzamos el "Punto Objetivo" (Target)
-            # a una distancia proporcional, logrando un movimiento guiado y elástico.
-            self.teleop_target += safe_vel * self.dt
+            # --- 1. DETECCIÓN REAL DE CURVA (Anti-Órbita) ---
+            if cmd_norm > 0.5:
+                current_cmd_angle = np.arctan2(cmd_vel_global[1], cmd_vel_global[0])
+                delta_angle = (current_cmd_angle - self.prev_cmd_angle + np.pi) % (2*np.pi) - np.pi
+                self.prev_cmd_angle = current_cmd_angle
+                
+                if abs(delta_angle) > 1.5:
+                    self.smooth_omega = 0.0  
+                else:
+                    omega_raw = delta_angle / self.dt
+                    self.smooth_omega = (self.smooth_omega * 0.75) + (omega_raw * 0.25)
+            else:
+                self.smooth_omega = self.smooth_omega * 0.50
+
+            # --- 2. FRENADA CINEMATOGRÁFICA Y LOOKAHEAD ELÁSTICO ---
+            # Alargamos la goma. Desde arriba puede mirar más lejos (0.50)
+            current_lookahead = np.clip(cmd_norm * 0.08, 0.05, 0.50)
+            if cmd_norm < vel_norm - 0.1:
+                aceleracion_dinamica = 15.0  
+            else:
+                # Subimos el suelo de aceleración a 8.0 m/s^2 para arranques explosivos
+                aceleracion_dinamica = np.clip(cmd_norm * 3.5, 3.0, 15.0)
+
+            # Integramos la velocidad
+            vel_error = cmd_vel_global - self.virtual_vel
+            accel_cmd = vel_error / self.dt
+            accel_norm = np.linalg.norm(accel_cmd)
             
-            target.x, target.y, target.z = self.teleop_target[0], self.teleop_target[1], self.teleop_target[2]
+            if aceleracion_dinamica > 0.0 and accel_norm > aceleracion_dinamica:
+                accel_cmd = (accel_cmd / accel_norm) * aceleracion_dinamica
+            
+            self.virtual_vel += accel_cmd * self.dt
+            
+            vel_norm = np.linalg.norm(self.virtual_vel)
+            if vel_norm > self.max_speed:
+                self.virtual_vel = (self.virtual_vel / vel_norm) * self.max_speed
+
+            # --- 3. EL LOOKAHEAD CURVO ---
+            theta_pred = self.smooth_omega * current_lookahead
+            
+            cos_theta = np.cos(theta_pred)
+            sin_theta = np.sin(theta_pred)
+            
+            v_x_curvo = self.virtual_vel[0] * cos_theta - self.virtual_vel[1] * sin_theta
+            v_y_curvo = self.virtual_vel[0] * sin_theta + self.virtual_vel[1] * cos_theta
+
+            target.x = self.current_pos[0] + (v_x_curvo * current_lookahead)
+            target.y = self.current_pos[1] + (v_y_curvo * current_lookahead)
+            target.z = self.Z_height
             active_command = True
 
-        # --- APLICACIÓN DE SEGURIDAD WFW (CLAMPING) ---
         if active_command:
-            # El candado absoluto. Da igual el modo, el robot nunca excederá estos límites.
             target.x = np.clip(target.x, -self.safe_x_limit, self.safe_x_limit)
             target.y = np.clip(target.y, -self.safe_y_limit, self.safe_y_limit)
-            target.z = np.clip(target.z, self.safe_z_min, self.safe_z_max)
-            
-            # Actualizamos el objetivo virtual en TELEOP por si chocó contra el muro virtual
-            if self.state == State.TELEOP:
-                self.teleop_target = np.array([target.x, target.y, target.z])
-                
+            target.z = np.clip(target.z, 0.0, self.safe_z_max) 
             self.target_pub.publish(target)
 
 def main():

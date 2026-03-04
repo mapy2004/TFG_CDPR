@@ -1,0 +1,5 @@
+  File "/home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages/skycam_control/skycam_trajectory_planner.py", line 37
+    self.max_accel = 7¡6.0 
+                     ^
+SyntaxError: invalid decimal literal
+
