@@ -49,7 +49,7 @@ class SkycamPaperControl(Node):
         self.kd_tilt = 60.0
         
         self.min_tension = 10.0 
-        self.max_tension = 4000.0
+        self.max_tension = 800.0
         
         self.create_subscription(Point, '/skycam/target_pos', self.target_cb, 10)
         self.create_subscription(Odometry, '/skycam/platform_odom', self.odom_cb, 10)
@@ -112,6 +112,7 @@ class SkycamPaperControl(Node):
         J = np.zeros((6, 4)) 
         marker_points = []
         u_vectors = []
+        L_xy_list = []  # NUEVO: Guardaremos la distancia horizontal de cada cable
         
         for i in range(4):
             r_body = self.body_points[i] - self.com_offset_body
@@ -120,6 +121,10 @@ class SkycamPaperControl(Node):
             b_global = self.current_pos + (self.current_rot @ self.body_points[i])
             L = self.anchors[i] - b_global
             dist = np.linalg.norm(L)
+            
+            # Calculamos la proyección horizontal del cable para la catenaria
+            L_xy_list.append(np.linalg.norm(L[0:2]))
+            
             u = L / dist if dist > 0.01 else np.array([0,0,1])
             u_vectors.append(u)
             
@@ -137,7 +142,20 @@ class SkycamPaperControl(Node):
         J_weighted = Weights @ J
         W_weighted = Weights @ W_desired
 
-        T_min_vec = np.full(4, self.min_tension)
+        # --- RESTRICCIÓN DINÁMICA DE CATENARIA (SAGGING) ---
+        rho = 0.05      # Densidad lineal del cable (50 gramos/metro)
+        max_sag = 0.6   # Pandeo máximo permitido (60 cm)
+        dynamic_t_min = []
+        
+        for i in range(4):
+            # Fórmula de tensión mínima para evitar que el cable se combe más de max_sag
+            t_sag = (rho * self.g * (L_xy_list[i]**2)) / (8.0 * max_sag)
+            # Exigimos la mayor de las dos: o los 10N estructurales, o la fuerza anti-pandeo
+            dynamic_t_min.append(max(self.min_tension, t_sag))
+            
+        T_min_vec = np.array(dynamic_t_min)
+        # ----------------------------------------------------
+
         W_adjusted = W_weighted - (J_weighted @ T_min_vec)
         
         try:
@@ -146,7 +164,7 @@ class SkycamPaperControl(Node):
         except Exception as e:
             tensions = T_min_vec
 
-        tensions = np.clip(tensions, self.min_tension, self.max_tension)
+        tensions = np.clip(tensions, T_min_vec, self.max_tension)
 
         self.publish_force(self.pub_1, tensions[0], u_vectors[0])
         self.publish_force(self.pub_2, tensions[1], u_vectors[1])

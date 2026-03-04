@@ -34,6 +34,7 @@ setup(
           'skycam_trajectory_planner=skycam_control.skycam_trajectory_planner:main',
           'skycam_ai_tracker=skycam_control.skycam_ai_tracker:main',
           'ball_mover=skycam_control.ball_mover:main',
+          'tension_logger=skycam_control.tension_logger:main',
                  ],
     },
 )
