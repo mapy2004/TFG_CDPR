@@ -7,6 +7,8 @@ from geometry_msgs.msg import Point, Twist
 from nav_msgs.msg import Odometry
 from enum import Enum
 from scipy.spatial.transform import Rotation as R
+import csv # <--- NUEVO: Librería para guardar CSV
+import os
 
 class State(Enum):
     IDLE = 0
@@ -44,8 +46,17 @@ class TrajectoryPlanner(Node):
         self.safe_y_limit = 8.0  
         self.safe_z_max = 20.0   # Techo subido a 20 metros
 
+        # --- NUEVO: PREPARACIÓN DEL ARCHIVO CSV ---
+        self.csv_filename = 'trajectory_log.csv'
+        self.csv_file = open(self.csv_filename, mode='w', newline='')
+        self.csv_writer = csv.writer(self.csv_file)
+        # Escribimos la cabecera del CSV
+        self.csv_writer.writerow(['time', 'target_x', 'target_y', 'target_z', 'actual_x', 'actual_y', 'actual_z'])
+        self.start_time = None
+        # ------------------------------------------
+
         self.timer = self.create_timer(self.dt, self.control_loop)
-        self.get_logger().info('Planificador: Modo Estadio (15m) ACTIVADO.')
+        self.get_logger().info('Planificador: Modo Estadio (15m) ACTIVADO. Guardando log en CSV...')
 
     def evaluate_path(self, s):
         return np.array([0.0, 0.0, self.Z_height])
@@ -67,6 +78,10 @@ class TrajectoryPlanner(Node):
 
     def control_loop(self):
         if self.current_pos is None: return
+        
+        # Inicializar el tiempo en el primer bucle
+        if self.start_time is None:
+            self.start_time = self.get_clock().now().nanoseconds / 1e9
 
         target = Point()
         active_command = False
@@ -114,12 +129,10 @@ class TrajectoryPlanner(Node):
                 self.smooth_omega = self.smooth_omega * 0.50
 
             # --- 2. FRENADA CINEMATOGRÁFICA Y LOOKAHEAD ELÁSTICO ---
-            # Alargamos la goma. Desde arriba puede mirar más lejos (0.50)
             current_lookahead = np.clip(cmd_norm * 0.08, 0.05, 0.50)
             if cmd_norm < vel_norm - 0.1:
                 aceleracion_dinamica = 15.0  
             else:
-                # Subimos el suelo de aceleración a 8.0 m/s^2 para arranques explosivos
                 aceleracion_dinamica = np.clip(cmd_norm * 3.5, 3.0, 15.0)
 
             # Integramos la velocidad
@@ -138,7 +151,6 @@ class TrajectoryPlanner(Node):
 
             # --- 3. EL LOOKAHEAD CURVO ---
             theta_pred = self.smooth_omega * current_lookahead
-            
             cos_theta = np.cos(theta_pred)
             sin_theta = np.sin(theta_pred)
             
@@ -156,11 +168,27 @@ class TrajectoryPlanner(Node):
             target.z = np.clip(target.z, 0.0, self.safe_z_max) 
             self.target_pub.publish(target)
 
+            # --- NUEVO: GUARDAR DATOS EN EL CSV EN CADA BUCLE ---
+            # Solo guardamos a partir de que entramos en TELEOP para no ensuciar la gráfica con el despegue
+            if self.state == State.TELEOP:
+                current_time = (self.get_clock().now().nanoseconds / 1e9) - self.start_time
+                self.csv_writer.writerow([
+                    current_time,
+                    target.x, target.y, target.z,
+                    self.current_pos[0], self.current_pos[1], self.current_pos[2]
+                ])
+                self.csv_file.flush() # Fuerza a guardar en el disco inmediatamente
+
 def main():
     rclpy.init()
     node = TrajectoryPlanner()
-    rclpy.spin(node)
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.csv_file.close() # Cierra el archivo al hacer Ctrl+C
+        rclpy.shutdown()
 
 if __name__ == '__main__':
     main()

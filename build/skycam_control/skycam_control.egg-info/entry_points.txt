@@ -1,5 +1,8 @@
 [console_scripts]
 ball_mover = skycam_control.ball_mover:main
+plot_3d = skycam_control.plot_3d:main
+plot_error = skycam_control.plot_error:main
+plot_tensiones = skycam_control.plot_tensiones:main
 skycam_ai_tracker = skycam_control.skycam_ai_tracker:main
 skycam_cable_1 = skycam_control.skycam_cable_1:main
 skycam_commander = skycam_control.skycam_commander:main
@@ -9,4 +12,5 @@ skycam_force_test = skycam_control.skycam_force_test:main
 skycam_four_cables = skycam_control.skycam_four_cables:main
 skycam_goal_sender = skycam_control.skycam_goal_sender:main
 skycam_trajectory_planner = skycam_control.skycam_trajectory_planner:main
+tension_logger = skycam_control.tension_logger:main
 

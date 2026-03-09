@@ -111,7 +111,7 @@ def generate_launch_description():
             actions=[ai_tracker_node]
         ),
         TimerAction(
-            period=20.0,
+            period=25.0,
             actions=[ball_mover_node]
         )
     ])

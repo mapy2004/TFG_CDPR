@@ -1,0 +1,33 @@
+[8.050s] Invoking command in '/home/mapy/skycam_ws/src/skycam_control': PYTHONPATH=/home/mapy/skycam_ws/build/skycam_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/skycam_control build --build-base /home/mapy/skycam_ws/build/skycam_control/build install --record /home/mapy/skycam_ws/build/skycam_control/install.log --single-version-externally-managed install_data
+[9.940s] running egg_info
+[9.944s] writing ../../build/skycam_control/skycam_control.egg-info/PKG-INFO
+[9.944s] writing dependency_links to ../../build/skycam_control/skycam_control.egg-info/dependency_links.txt
+[9.944s] writing entry points to ../../build/skycam_control/skycam_control.egg-info/entry_points.txt
+[9.944s] writing requirements to ../../build/skycam_control/skycam_control.egg-info/requires.txt
+[9.944s] writing top-level names to ../../build/skycam_control/skycam_control.egg-info/top_level.txt
+[9.962s] reading manifest file '../../build/skycam_control/skycam_control.egg-info/SOURCES.txt'
+[9.997s] writing manifest file '../../build/skycam_control/skycam_control.egg-info/SOURCES.txt'
+[9.997s] running build
+[9.997s] running build_py
+[10.011s] running install
+[10.011s] running install_lib
+[10.031s] running install_data
+[10.031s] running install_egg_info
+[10.086s] removing '/home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages/skycam_control-0.0.0-py3.10.egg-info' (and everything under it)
+[10.086s] Copying ../../build/skycam_control/skycam_control.egg-info to /home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages/skycam_control-0.0.0-py3.10.egg-info
+[10.095s] running install_scripts
+[10.502s] Installing ball_mover script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[10.505s] Installing plot_error script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[10.505s] Installing plot_tensiones script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[10.520s] Installing skycam_ai_tracker script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[10.521s] Installing skycam_cable_1 script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[10.539s] Installing skycam_commander script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[10.539s] Installing skycam_controller script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[10.539s] Installing skycam_dynamics script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[10.539s] Installing skycam_force_test script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[10.539s] Installing skycam_four_cables script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[10.539s] Installing skycam_goal_sender script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[10.539s] Installing skycam_trajectory_planner script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[10.539s] Installing tension_logger script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[10.551s] writing list of installed files to '/home/mapy/skycam_ws/build/skycam_control/install.log'
+[10.694s] Invoked command in '/home/mapy/skycam_ws/src/skycam_control' returned '0': PYTHONPATH=/home/mapy/skycam_ws/build/skycam_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/skycam_control build --build-base /home/mapy/skycam_ws/build/skycam_control/build install --record /home/mapy/skycam_ws/build/skycam_control/install.log --single-version-externally-managed install_data

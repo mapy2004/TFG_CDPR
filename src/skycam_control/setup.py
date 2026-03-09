@@ -35,6 +35,9 @@ setup(
           'skycam_ai_tracker=skycam_control.skycam_ai_tracker:main',
           'ball_mover=skycam_control.ball_mover:main',
           'tension_logger=skycam_control.tension_logger:main',
-                 ],
+          'plot_tensiones=skycam_control.plot_tensiones:main',
+          'plot_error=skycam_control.plot_error:main',
+          'plot_3d=skycam_control.plot_3d:main',
+                ],
     },
 )

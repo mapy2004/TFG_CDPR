@@ -11,7 +11,10 @@ setup.py
 resource/skycam_control
 skycam_control/__init__.py
 skycam_control/ball_mover.py
+skycam_control/plot_3d.py
+skycam_control/plot_error.py
 skycam_control/plot_tension_3d.py
+skycam_control/plot_tensiones.py
 skycam_control/plot_workspace.py
 skycam_control/skycam_ai_tracker.py
 skycam_control/skycam_cable_1.py
@@ -22,6 +25,7 @@ skycam_control/skycam_force_test.py
 skycam_control/skycam_four_cables.py
 skycam_control/skycam_goal_sender.py
 skycam_control/skycam_trajectory_planner.py
+skycam_control/tension_logger.py
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py

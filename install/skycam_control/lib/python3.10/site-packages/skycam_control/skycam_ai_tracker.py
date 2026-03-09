@@ -45,7 +45,7 @@ class AITracker(Node):
         self.prev_error_x = 0.0
         self.prev_error_y = 0.0
         
-        self.deadband = 15  
+        self.deadband = 5  
         
         self.roll = 0.0
         self.pitch = 0.0
@@ -70,6 +70,15 @@ class AITracker(Node):
 
         self.latest_cv_image = None
         self.image_lock = threading.Lock()
+
+        # --- INICIO DEL LOGGER DE ERROR VISUAL ---
+        import csv
+        self.error_filename = 'error_seguimiento.csv'
+        with open(self.error_filename, mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(['Tiempo_s', 'Error_Pixeles'])
+        self.start_time = self.get_clock().now().nanoseconds / 1e9
+        # -----------------------------------------
 
     def odom_cb(self, msg):
         q = msg.pose.pose.orientation
@@ -150,6 +159,12 @@ class AITracker(Node):
             error_x_raw = obj_x - gimbal_x  
             error_y_raw = obj_y - gimbal_y  
             error_dist_raw = np.hypot(error_x_raw, error_y_raw)
+            # --- GUARDAR DATO EN EL CSV ---
+            current_time = (self.get_clock().now().nanoseconds / 1e9) - self.start_time
+            with open(self.error_filename, mode='a', newline='') as file:
+                import csv
+                csv.writer(file).writerow([f"{current_time:.3f}", f"{error_dist_raw:.2f}"])
+            # ------------------------------
             
             if error_dist_raw <= self.deadband:
                 error_x_p = 0.0
@@ -184,8 +199,8 @@ class AITracker(Node):
             else:
                 self.momentum = max(0.15, self.momentum - 0.05) 
 
-            dist_ratio = np.clip(error_dist / 90.0, 0.0, 1.0)
-            escala = np.clip(dist_ratio * self.momentum, 0.25, 1.0)
+            dist_ratio = np.clip(error_dist / 50.0, 0.0, 1.0)
+            escala = np.clip(dist_ratio * self.momentum, 0.35, 1.0)
             
             curr_kp_x = self.kp_x * escala
             curr_kp_y = self.kp_y * escala

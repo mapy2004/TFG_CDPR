@@ -1,0 +1,34 @@
+[2.612s] Invoking command in '/home/mapy/skycam_ws/src/skycam_control': PYTHONPATH=/home/mapy/skycam_ws/build/skycam_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/skycam_control build --build-base /home/mapy/skycam_ws/build/skycam_control/build install --record /home/mapy/skycam_ws/build/skycam_control/install.log --single-version-externally-managed install_data
+[2.953s] running egg_info
+[2.955s] writing ../../build/skycam_control/skycam_control.egg-info/PKG-INFO
+[2.955s] writing dependency_links to ../../build/skycam_control/skycam_control.egg-info/dependency_links.txt
+[2.956s] writing entry points to ../../build/skycam_control/skycam_control.egg-info/entry_points.txt
+[2.956s] writing requirements to ../../build/skycam_control/skycam_control.egg-info/requires.txt
+[2.956s] writing top-level names to ../../build/skycam_control/skycam_control.egg-info/top_level.txt
+[2.960s] reading manifest file '../../build/skycam_control/skycam_control.egg-info/SOURCES.txt'
+[2.969s] writing manifest file '../../build/skycam_control/skycam_control.egg-info/SOURCES.txt'
+[2.969s] running build
+[2.969s] running build_py
+[2.969s] copying skycam_control/tension_logger.py -> /home/mapy/skycam_ws/build/skycam_control/build/lib/skycam_control
+[2.970s] running install
+[2.971s] running install_lib
+[2.973s] copying /home/mapy/skycam_ws/build/skycam_control/build/lib/skycam_control/tension_logger.py -> /home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages/skycam_control
+[2.975s] byte-compiling /home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages/skycam_control/tension_logger.py to tension_logger.cpython-310.pyc
+[2.976s] running install_data
+[2.976s] running install_egg_info
+[2.979s] removing '/home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages/skycam_control-0.0.0-py3.10.egg-info' (and everything under it)
+[2.979s] Copying ../../build/skycam_control/skycam_control.egg-info to /home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages/skycam_control-0.0.0-py3.10.egg-info
+[2.980s] running install_scripts
+[3.010s] Installing ball_mover script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[3.010s] Installing skycam_ai_tracker script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[3.010s] Installing skycam_cable_1 script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[3.010s] Installing skycam_commander script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[3.010s] Installing skycam_controller script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[3.010s] Installing skycam_dynamics script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[3.010s] Installing skycam_force_test script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[3.010s] Installing skycam_four_cables script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[3.011s] Installing skycam_goal_sender script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[3.011s] Installing skycam_trajectory_planner script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[3.011s] Installing tension_logger script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control
+[3.012s] writing list of installed files to '/home/mapy/skycam_ws/build/skycam_control/install.log'
+[3.047s] Invoked command in '/home/mapy/skycam_ws/src/skycam_control' returned '0': PYTHONPATH=/home/mapy/skycam_ws/build/skycam_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/skycam_control build --build-base /home/mapy/skycam_ws/build/skycam_control/build install --record /home/mapy/skycam_ws/build/skycam_control/install.log --single-version-externally-managed install_data

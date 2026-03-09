@@ -1,0 +1,183 @@
+[0.000000] (-) TimerEvent: {}
+[0.002529] (skycam_control) JobQueued: {'identifier': 'skycam_control', 'dependencies': OrderedDict()}
+[0.002586] (skycam_description) JobQueued: {'identifier': 'skycam_description', 'dependencies': OrderedDict()}
+[0.002789] (skycam_control) JobStarted: {'identifier': 'skycam_control'}
+[0.110474] (-) TimerEvent: {}
+[0.128207] (skycam_description) JobStarted: {'identifier': 'skycam_description'}
+[0.213038] (-) TimerEvent: {}
+[0.319124] (-) TimerEvent: {}
+[0.429964] (-) TimerEvent: {}
+[0.534920] (-) TimerEvent: {}
+[0.640661] (-) TimerEvent: {}
+[0.749154] (-) TimerEvent: {}
+[0.858146] (-) TimerEvent: {}
+[0.976193] (-) TimerEvent: {}
+[1.084850] (-) TimerEvent: {}
+[1.188009] (-) TimerEvent: {}
+[1.288859] (-) TimerEvent: {}
+[1.402909] (-) TimerEvent: {}
+[1.510769] (-) TimerEvent: {}
+[1.613021] (-) TimerEvent: {}
+[1.716169] (-) TimerEvent: {}
+[1.816755] (-) TimerEvent: {}
+[1.920058] (-) TimerEvent: {}
+[2.021214] (-) TimerEvent: {}
+[2.127854] (-) TimerEvent: {}
+[2.228443] (-) TimerEvent: {}
+[2.330256] (-) TimerEvent: {}
+[2.432552] (-) TimerEvent: {}
+[2.535996] (-) TimerEvent: {}
+[2.639195] (-) TimerEvent: {}
+[2.741620] (-) TimerEvent: {}
+[2.846973] (-) TimerEvent: {}
+[2.945138] (skycam_description) JobProgress: {'identifier': 'skycam_description', 'progress': 'cmake'}
+[2.951061] (-) TimerEvent: {}
+[2.974919] (skycam_description) JobProgress: {'identifier': 'skycam_description', 'progress': 'build'}
+[2.986445] (skycam_description) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/mapy/skycam_ws/build/skycam_description', '--', '-j4', '-l4'], 'cwd': '/home/mapy/skycam_ws/build/skycam_description', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'mapy'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:'), ('HOME', '/home/mapy'), ('CHROME_DESKTOP', 'code.desktop'), ('TERM_PROGRAM_VERSION', '1.106.3'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('GAZEBO_MASTER_URI', 'http://localhost:11345'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '1050'), ('SYSTEMD_EXEC_PID', '2187'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '6140'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'mapy'), ('IGN_GAZEBO_MODEL_PATH', '/opt/ros/humble/share'), ('JOURNAL_STREAM', '8:14454'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'mapy'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', '/usr/share/gazebo-11/models:/opt/ros/humble/share:/home/mapy/oruga_humble_ws/install/linorobot2_gazebo/share/linorobot2_gazebo/models:/home/mapy/.gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('OGRE_RESOURCE_PATH', '/usr/lib/x86_64-linux-gnu/OGRE-1.9.0'), ('PATH', '/home/mapy/xpack-riscv-none-elf-gcc-12.5.0-1/bin:/home/mapy/riscv32/bin:/home/mapy/oss-cad-suite/bin:/opt/ros/humble/bin:/home/mapy/.local/bin:/home/mapy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/mapy-Lenovo-Y520-15IKBN:@/tmp/.ICE-unix/2158,unix/mapy-Lenovo-Y520-15IKBN:/tmp/.ICE-unix/2158'), ('INVOCATION_ID', '38afa608da124197bd76e5f67a91d344'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-fc2bb2d354.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('IGN_GAZEBO_RESOURCE_PATH', '/opt/ros/humble/share'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GAZEBO_RESOURCE_PATH', '/usr/share/gazebo-11:/opt/ros/humble/share'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('GAZEBO_MODEL_DATABASE_URI', 'http://models.gazebosim.org'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/mapy/skycam_ws/build/skycam_description'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('GAZEBO_PLUGIN_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'en_US.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[3.051565] (-) TimerEvent: {}
+[3.160022] (-) TimerEvent: {}
+[3.262460] (-) TimerEvent: {}
+[3.367802] (-) TimerEvent: {}
+[3.471939] (-) TimerEvent: {}
+[3.481692] (skycam_description) CommandEnded: {'returncode': 0}
+[3.577559] (-) TimerEvent: {}
+[3.678258] (-) TimerEvent: {}
+[3.793084] (-) TimerEvent: {}
+[3.820981] (skycam_description) JobProgress: {'identifier': 'skycam_description', 'progress': 'install'}
+[3.867392] (skycam_description) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/mapy/skycam_ws/build/skycam_description'], 'cwd': '/home/mapy/skycam_ws/build/skycam_description', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'mapy'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:'), ('HOME', '/home/mapy'), ('CHROME_DESKTOP', 'code.desktop'), ('TERM_PROGRAM_VERSION', '1.106.3'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('GAZEBO_MASTER_URI', 'http://localhost:11345'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('MANAGERPID', '1050'), ('SYSTEMD_EXEC_PID', '2187'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '6140'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'mapy'), ('IGN_GAZEBO_MODEL_PATH', '/opt/ros/humble/share'), ('JOURNAL_STREAM', '8:14454'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'mapy'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', '/usr/share/gazebo-11/models:/opt/ros/humble/share:/home/mapy/oruga_humble_ws/install/linorobot2_gazebo/share/linorobot2_gazebo/models:/home/mapy/.gazebo/models'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('OGRE_RESOURCE_PATH', '/usr/lib/x86_64-linux-gnu/OGRE-1.9.0'), ('PATH', '/home/mapy/xpack-riscv-none-elf-gcc-12.5.0-1/bin:/home/mapy/riscv32/bin:/home/mapy/oss-cad-suite/bin:/opt/ros/humble/bin:/home/mapy/.local/bin:/home/mapy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/mapy-Lenovo-Y520-15IKBN:@/tmp/.ICE-unix/2158,unix/mapy-Lenovo-Y520-15IKBN:/tmp/.ICE-unix/2158'), ('INVOCATION_ID', '38afa608da124197bd76e5f67a91d344'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-fc2bb2d354.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('IGN_GAZEBO_RESOURCE_PATH', '/opt/ros/humble/share'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GAZEBO_RESOURCE_PATH', '/usr/share/gazebo-11:/opt/ros/humble/share'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('GAZEBO_MODEL_DATABASE_URI', 'http://models.gazebosim.org'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/mapy/skycam_ws/build/skycam_description'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('GAZEBO_PLUGIN_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'en_US.UTF-8'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[3.893447] (-) TimerEvent: {}
+[3.900584] (skycam_description) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[3.901328] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/lib/skycam_description/simple_tf_broadcaster.py\n'}
+[3.901508] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/config\n'}
+[3.901597] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/config/config.rviz\n'}
+[3.901676] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/launch\n'}
+[3.901746] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/launch/debug_sphere.launch.py\n'}
+[3.901819] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/launch/display.launch.py\n'}
+[3.901897] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/launch/display_gazebo.launch.py\n'}
+[3.901965] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/launch/display_rviz.launch.py\n'}
+[3.902031] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf\n'}
+[3.902097] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/skycam_rviz.xacro\n'}
+[3.902163] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/test.urdf\n'}
+[3.902748] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/ball.xacro\n'}
+[3.903318] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/skycam.urdf\n'}
+[3.903669] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/simple_sphere.xacro\n'}
+[3.903763] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/skycam.xacro\n'}
+[3.904016] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/urdf/skycam_gazebo.xacro\n'}
+[3.904093] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/worlds\n'}
+[3.904162] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/worlds/normal.world\n'}
+[3.904229] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/ament_index/resource_index/package_run_dependencies/skycam_description\n'}
+[3.904295] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/ament_index/resource_index/parent_prefix_path/skycam_description\n'}
+[3.904369] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/environment/ament_prefix_path.sh\n'}
+[3.904434] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/environment/ament_prefix_path.dsv\n'}
+[3.906692] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/environment/path.sh\n'}
+[3.907340] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/environment/path.dsv\n'}
+[3.907520] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/local_setup.bash\n'}
+[3.908852] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/local_setup.sh\n'}
+[3.908965] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/local_setup.zsh\n'}
+[3.909042] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/local_setup.dsv\n'}
+[3.909112] (skycam_description) StdoutLine: {'line': b'-- Installing: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.dsv\n'}
+[3.920418] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/ament_index/resource_index/packages/skycam_description\n'}
+[3.928780] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/cmake/skycam_descriptionConfig.cmake\n'}
+[3.949106] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/cmake/skycam_descriptionConfig-version.cmake\n'}
+[3.949212] (skycam_description) StdoutLine: {'line': b'-- Up-to-date: /home/mapy/skycam_ws/install/skycam_description/share/skycam_description/package.xml\n'}
+[3.949294] (skycam_description) CommandEnded: {'returncode': 0}
+[4.000237] (-) TimerEvent: {}
+[4.123460] (-) TimerEvent: {}
+[4.210166] (skycam_description) JobEnded: {'identifier': 'skycam_description', 'rc': 0}
+[4.223530] (-) TimerEvent: {}
+[4.326604] (-) TimerEvent: {}
+[4.427102] (-) TimerEvent: {}
+[4.536756] (-) TimerEvent: {}
+[4.641293] (-) TimerEvent: {}
+[4.749160] (-) TimerEvent: {}
+[4.854998] (-) TimerEvent: {}
+[4.955784] (-) TimerEvent: {}
+[5.063502] (-) TimerEvent: {}
+[5.170354] (-) TimerEvent: {}
+[5.271984] (-) TimerEvent: {}
+[5.378001] (-) TimerEvent: {}
+[5.482460] (-) TimerEvent: {}
+[5.594083] (-) TimerEvent: {}
+[5.700841] (-) TimerEvent: {}
+[5.801444] (-) TimerEvent: {}
+[5.911605] (-) TimerEvent: {}
+[6.020708] (-) TimerEvent: {}
+[6.132868] (-) TimerEvent: {}
+[6.234221] (-) TimerEvent: {}
+[6.347690] (-) TimerEvent: {}
+[6.454034] (-) TimerEvent: {}
+[6.554716] (-) TimerEvent: {}
+[6.665242] (-) TimerEvent: {}
+[6.768253] (-) TimerEvent: {}
+[6.870057] (-) TimerEvent: {}
+[6.977387] (-) TimerEvent: {}
+[7.083812] (-) TimerEvent: {}
+[7.184398] (-) TimerEvent: {}
+[7.286041] (-) TimerEvent: {}
+[7.386897] (-) TimerEvent: {}
+[7.487945] (-) TimerEvent: {}
+[7.589325] (-) TimerEvent: {}
+[7.693507] (-) TimerEvent: {}
+[7.804523] (-) TimerEvent: {}
+[7.905062] (-) TimerEvent: {}
+[8.011503] (-) TimerEvent: {}
+[8.050767] (skycam_control) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/skycam_control', 'build', '--build-base', '/home/mapy/skycam_ws/build/skycam_control/build', 'install', '--record', '/home/mapy/skycam_ws/build/skycam_control/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/mapy/skycam_ws/src/skycam_control', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'mapy', 'XDG_SESSION_TYPE': 'x11', 'GIT_ASKPASS': '/usr/share/code/resources/app/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:', 'HOME': '/home/mapy', 'CHROME_DESKTOP': 'code.desktop', 'TERM_PROGRAM_VERSION': '1.106.3', 'DESKTOP_SESSION': 'ubuntu', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/code.desktop', 'GAZEBO_MASTER_URI': 'http://localhost:11345', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'VSCODE_GIT_ASKPASS_MAIN': '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/usr/share/code/code', 'MANAGERPID': '1050', 'SYSTEMD_EXEC_PID': '2187', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '6140', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'mapy', 'IGN_GAZEBO_MODEL_PATH': '/opt/ros/humble/share', 'JOURNAL_STREAM': '8:14454', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'mapy', 'TERM': 'xterm-256color', 'GAZEBO_MODEL_PATH': '/usr/share/gazebo-11/models:/opt/ros/humble/share:/home/mapy/oruga_humble_ws/install/linorobot2_gazebo/share/linorobot2_gazebo/models:/home/mapy/.gazebo/models', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'OGRE_RESOURCE_PATH': '/usr/lib/x86_64-linux-gnu/OGRE-1.9.0', 'PATH': '/home/mapy/xpack-riscv-none-elf-gcc-12.5.0-1/bin:/home/mapy/riscv32/bin:/home/mapy/oss-cad-suite/bin:/opt/ros/humble/bin:/home/mapy/.local/bin:/home/mapy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/mapy-Lenovo-Y520-15IKBN:@/tmp/.ICE-unix/2158,unix/mapy-Lenovo-Y520-15IKBN:/tmp/.ICE-unix/2158', 'INVOCATION_ID': '38afa608da124197bd76e5f67a91d344', 'XDG_MENU_PREFIX': 'gnome-', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'x11', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'Unity', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-fc2bb2d354.sock', 'TERM_PROGRAM': 'vscode', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/opt/ros/humble', 'ORIGINAL_XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'IGN_GAZEBO_RESOURCE_PATH': '/opt/ros/humble/share', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'GAZEBO_RESOURCE_PATH': '/usr/share/gazebo-11:/opt/ros/humble/share', 'GJS_DEBUG_OUTPUT': 'stderr', 'GAZEBO_MODEL_DATABASE_URI': 'http://models.gazebosim.org', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/mapy/skycam_ws/build/skycam_control', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'GAZEBO_PLUGIN_PATH': '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/mapy/skycam_ws/build/skycam_control/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'en_US.UTF-8', 'COLCON': '1'}, 'shell': False}
+[8.120286] (-) TimerEvent: {}
+[8.234440] (-) TimerEvent: {}
+[8.336853] (-) TimerEvent: {}
+[8.440073] (-) TimerEvent: {}
+[8.540386] (-) TimerEvent: {}
+[8.642582] (-) TimerEvent: {}
+[8.758127] (-) TimerEvent: {}
+[8.863914] (-) TimerEvent: {}
+[8.967753] (-) TimerEvent: {}
+[9.075088] (-) TimerEvent: {}
+[9.180937] (-) TimerEvent: {}
+[9.286215] (-) TimerEvent: {}
+[9.386849] (-) TimerEvent: {}
+[9.487397] (-) TimerEvent: {}
+[9.601886] (-) TimerEvent: {}
+[9.714422] (-) TimerEvent: {}
+[9.814776] (-) TimerEvent: {}
+[9.918111] (-) TimerEvent: {}
+[9.942799] (skycam_control) StdoutLine: {'line': b'running egg_info\n'}
+[9.946841] (skycam_control) StdoutLine: {'line': b'writing ../../build/skycam_control/skycam_control.egg-info/PKG-INFO\n'}
+[9.946988] (skycam_control) StdoutLine: {'line': b'writing dependency_links to ../../build/skycam_control/skycam_control.egg-info/dependency_links.txt\n'}
+[9.947063] (skycam_control) StdoutLine: {'line': b'writing entry points to ../../build/skycam_control/skycam_control.egg-info/entry_points.txt\n'}
+[9.947132] (skycam_control) StdoutLine: {'line': b'writing requirements to ../../build/skycam_control/skycam_control.egg-info/requires.txt\n'}
+[9.947198] (skycam_control) StdoutLine: {'line': b'writing top-level names to ../../build/skycam_control/skycam_control.egg-info/top_level.txt\n'}
+[9.963394] (skycam_control) StdoutLine: {'line': b"reading manifest file '../../build/skycam_control/skycam_control.egg-info/SOURCES.txt'\n"}
+[9.999148] (skycam_control) StdoutLine: {'line': b"writing manifest file '../../build/skycam_control/skycam_control.egg-info/SOURCES.txt'\n"}
+[9.999416] (skycam_control) StdoutLine: {'line': b'running build\n'}
+[9.999524] (skycam_control) StdoutLine: {'line': b'running build_py\n'}
+[10.013149] (skycam_control) StdoutLine: {'line': b'running install\n'}
+[10.013498] (skycam_control) StdoutLine: {'line': b'running install_lib\n'}
+[10.018567] (-) TimerEvent: {}
+[10.033392] (skycam_control) StdoutLine: {'line': b'running install_data\n'}
+[10.033983] (skycam_control) StdoutLine: {'line': b'running install_egg_info\n'}
+[10.087688] (skycam_control) StdoutLine: {'line': b"removing '/home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages/skycam_control-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[10.088548] (skycam_control) StdoutLine: {'line': b'Copying ../../build/skycam_control/skycam_control.egg-info to /home/mapy/skycam_ws/install/skycam_control/lib/python3.10/site-packages/skycam_control-0.0.0-py3.10.egg-info\n'}
+[10.097043] (skycam_control) StdoutLine: {'line': b'running install_scripts\n'}
+[10.125080] (-) TimerEvent: {}
+[10.231377] (-) TimerEvent: {}
+[10.336795] (-) TimerEvent: {}
+[10.445213] (-) TimerEvent: {}
+[10.504250] (skycam_control) StdoutLine: {'line': b'Installing ball_mover script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control\n'}
+[10.507569] (skycam_control) StdoutLine: {'line': b'Installing plot_error script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control\n'}
+[10.507732] (skycam_control) StdoutLine: {'line': b'Installing plot_tensiones script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control\n'}
+[10.521997] (skycam_control) StdoutLine: {'line': b'Installing skycam_ai_tracker script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control\n'}
+[10.522995] (skycam_control) StdoutLine: {'line': b'Installing skycam_cable_1 script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control\n'}
+[10.541318] (skycam_control) StdoutLine: {'line': b'Installing skycam_commander script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control\n'}
+[10.541486] (skycam_control) StdoutLine: {'line': b'Installing skycam_controller script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control\n'}
+[10.541575] (skycam_control) StdoutLine: {'line': b'Installing skycam_dynamics script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control\n'}
+[10.541649] (skycam_control) StdoutLine: {'line': b'Installing skycam_force_test script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control\n'}
+[10.541718] (skycam_control) StdoutLine: {'line': b'Installing skycam_four_cables script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control\n'}
+[10.541786] (skycam_control) StdoutLine: {'line': b'Installing skycam_goal_sender script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control\n'}
+[10.541871] (skycam_control) StdoutLine: {'line': b'Installing skycam_trajectory_planner script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control\n'}
+[10.541940] (skycam_control) StdoutLine: {'line': b'Installing tension_logger script to /home/mapy/skycam_ws/install/skycam_control/lib/skycam_control\n'}
+[10.553290] (skycam_control) StdoutLine: {'line': b"writing list of installed files to '/home/mapy/skycam_ws/build/skycam_control/install.log'\n"}
+[10.554701] (-) TimerEvent: {}
+[10.673467] (-) TimerEvent: {}
+[10.696284] (skycam_control) CommandEnded: {'returncode': 0}
+[10.729511] (skycam_control) JobEnded: {'identifier': 'skycam_control', 'rc': 0}
+[10.729851] (-) EventReactorShutdown: {}
