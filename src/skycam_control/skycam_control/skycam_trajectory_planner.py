@@ -14,7 +14,8 @@ class State(Enum):
     IDLE = 0
     APPROACHING_START = 1
     TELEOP = 2  
-
+    EMERGENCY = 3   
+    
 class TrajectoryPlanner(Node):
     def __init__(self):
         super().__init__('skycam_trajectory_planner')
@@ -162,6 +163,18 @@ class TrajectoryPlanner(Node):
             target.z = self.Z_height
             active_command = True
 
+        elif self.state == State.EMERGENCY:
+            # 1. Matamos cualquier inercia o comando de la IA
+            self.virtual_vel = np.zeros(3)
+            
+            # 2. Clavamos la posición XY actual y bajamos Z lentamente (0.5 m/s)
+            target.x = self.current_pos[0]
+            target.y = self.current_pos[1]
+            target.z = max(0.0, self.current_pos[2] - (0.5 * self.dt))
+            
+            active_command = True
+            self.get_logger().info('¡EMERGENCIA! Abortando misión y descendiendo...', throttle_duration_sec=1.0)
+
         if active_command:
             target.x = np.clip(target.x, -self.safe_x_limit, self.safe_x_limit)
             target.y = np.clip(target.y, -self.safe_y_limit, self.safe_y_limit)
@@ -178,6 +191,7 @@ class TrajectoryPlanner(Node):
                     self.current_pos[0], self.current_pos[1], self.current_pos[2]
                 ])
                 self.csv_file.flush() # Fuerza a guardar en el disco inmediatamente
+        
 
 def main():
     rclpy.init()
