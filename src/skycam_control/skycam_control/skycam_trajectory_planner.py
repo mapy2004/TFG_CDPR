@@ -87,6 +87,13 @@ class TrajectoryPlanner(Node):
         target = Point()
         active_command = False
 
+        if self.state in [State.APPROACHING_START, State.TELEOP]:
+            error_critico = np.linalg.norm(self.virtual_target - self.current_pos)
+            # Si el robot físico se desvía más de 3.5 metros de su objetivo virtual, algo grave ha roto
+            if error_critico > 3.5:
+                self.state = State.EMERGENCY
+                self.get_logger().error(f'¡FALLO CRÍTICO DE CONTROL! Desviación de {error_critico:.2f}m. Activando Emergencia.')
+
         if self.state == State.APPROACHING_START:
             start_point = self.evaluate_path(0.0)
             dir_vec = start_point - self.virtual_target
